@@ -1,0 +1,19 @@
+baseURL = "https://example.org/"  # 部署时替换为实际 URL
+languageCode = "en-us"
+title = "B0Z Paperboi"
+theme = "PaperMod"
+
+[params]
+  defaultTheme = "auto"
+  homeInfoParams.Title = "Welcome to B0Z Blog"
+  homeInfoParams.Content = "This is my personal blog built with Hugo and PaperMod."
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10

@@ -1,0 +1,24 @@
+baseURL = "http://example.org/"  # 替换为你的网站 URL（后续部署时修改）
+languageCode = "en-us"          # 语言代码，可改为 "zh-cn" 支持中文
+title = "B0Z Hugo Site"      # 网站标题，自定义
+theme = "PaperMod"              # 启用 PaperMod 主题
+
+[params]
+  defaultTheme = "auto"         # 主题模式：auto（自动切换）、light（明亮）、dark（暗黑）
+  homeInfoParams.Title = "B0Zog"  # 主页标题
+  homeInfoParams.Content = "Blog"  # 主页描述
+  ShowReadingTime = true        # 显示文章阅读时间
+  ShowShareButtons = true       # 显示分享按钮
+  ShowPostNavLinks = true       # 显示文章导航（上一篇/下一篇）
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+hugo new content posts/my-first-post.m
+
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
