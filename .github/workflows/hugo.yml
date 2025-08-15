@@ -2,8 +2,8 @@ name: Deploy Hugo to GitHub Pages
 
 on:
   push:
-    branches: [ main ]        # 改成你的主分支
-  workflow_dispatch:          # 需要时可手动触发
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,47 +21,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true        # 如果你的主题是 submodule，务必开启
+          submodules: true      # ★ 如果 PaperMod 是以 git submodule 引入，这个必须是 true
           fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.125.7' # 固定一个你测试过的版本
+          hugo-version: '0.146.0'  # ★ 升到 PaperMod 要求的版本（或 'latest'）
           extended: true
 
-      # 缓存 Hugo 资源与模块
-      - name: Cache Hugo
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/hugo
-            resources/_gen
-          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.mod') }}-${{ hashFiles('**/*.scss', '**/*.css', '**/*.js') }}
-          restore-keys: |
-            ${{ runner.os }}-hugo-
-
-      # 如果你用到了 PostCSS/Tailwind（有 package-lock.json），自动装依赖并缓存
-      - name: Use Node if needed
-        if: hashFiles('**/package-lock.json') != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Cache node_modules
-        if: hashFiles('**/package-lock.json') != ''
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install npm deps
-        if: hashFiles('**/package-lock.json') != ''
-        run: npm ci
-
       - name: Build
-        run: hugo --gc --minify    # 产物默认在 ./public
+        run: hugo --gc --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
