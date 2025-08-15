@@ -1,4 +1,4 @@
-baseURL = "https://example.org/"  # 部署时替换为实际 URL
+baseURL = "https://nonamestart.github.io/my-hugo-site/"  # 部署时替换为实际 URL
 languageCode = "en-us"
 title = "B0Z Paperboi"
 theme = "PaperMod"
